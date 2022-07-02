@@ -13,6 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Fragment1 extends Fragment {
@@ -42,9 +46,8 @@ public class Fragment1 extends Fragment {
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        for(int i=1;i<=10;i++){
-            mPhonebook.add(new PhoneBook(i+"번째 사람","000-0000-000"+i));
-        }
+        get_json();
+
         recyclerAdapter.setMyPhoneBook(mPhonebook);
         return view;
     }
@@ -55,6 +58,27 @@ public class Fragment1 extends Fragment {
             //Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
             startActivity(intent);
+        }
+    }
+    public void get_json(){
+        String json;
+        try{
+            InputStream is = getActivity().getAssets().open("phonebook.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+            JSONArray jsonArray = new JSONArray(json);
+
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject obj = jsonArray.getJSONObject(i);
+                mPhonebook.add(new PhoneBook(obj.getString("name"),obj.getString("phone")));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
