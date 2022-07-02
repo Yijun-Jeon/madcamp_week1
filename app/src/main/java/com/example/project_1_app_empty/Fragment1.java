@@ -62,6 +62,9 @@ public class Fragment1 extends Fragment {
     }
     public void get_json(){
         String json;
+
+        mPhonebook.clear();
+        
         try{
             InputStream is = getActivity().getAssets().open("phonebook.json");
             int size = is.available();

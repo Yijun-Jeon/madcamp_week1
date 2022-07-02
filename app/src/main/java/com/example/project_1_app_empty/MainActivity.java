@@ -66,7 +66,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                Fragment selected = null;
 
+                if(position == 0){
+                    selected = fragment1;
+                } else if (position == 1) {
+                    selected = fragment2;
+                } else if (position == 2) {
+                    selected = fragment3;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, selected).commit();
             }
         });
     }
