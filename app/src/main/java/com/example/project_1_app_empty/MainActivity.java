@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
-
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setText("Phone"));
         tabs.addTab(tabs.newTab().setText("Gallery"));

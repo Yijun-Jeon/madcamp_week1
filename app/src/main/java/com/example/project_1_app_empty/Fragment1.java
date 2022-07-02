@@ -1,5 +1,6 @@
 package com.example.project_1_app_empty;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +18,12 @@ import java.util.ArrayList;
 public class Fragment1 extends Fragment {
 
     private ArrayList<PhoneBook> mPhonebook;
+    private ClickListener clkListener;
 
     public Fragment1(){
         super();
         mPhonebook = new ArrayList<PhoneBook>();
+        clkListener = new ClickListener();
     }
 
     @Override
@@ -32,13 +35,7 @@ public class Fragment1 extends Fragment {
 
         view = inflater.inflate(R.layout.fragment1, container, false);
         button = view.findViewById(R.id.button_f1);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "done", Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(getActivity(),Addphone)
-            }
-        });
+        button.setOnClickListener(clkListener);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         recyclerAdapter = new RecyclerAdapter();
@@ -49,9 +46,15 @@ public class Fragment1 extends Fragment {
             mPhonebook.add(new PhoneBook(i+"번째 사람","000-0000-000"+i));
         }
         recyclerAdapter.setMyPhoneBook(mPhonebook);
-
         return view;
     }
 
-
+    public class ClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            //Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
+            startActivity(intent);
+        }
+    }
 }
