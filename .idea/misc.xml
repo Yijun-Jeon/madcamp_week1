@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/kaist/madcamp/project1appempty/app/src/main/res/layout/activity_full_screen.xml" value="0.1" />
         <entry key="..\:/kaist/madcamp/project1appempty/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/kaist/madcamp/project1appempty/app/src/main/res/layout/fragment1.xml" value="0.2" />
-        <entry key="..\:/kaist/madcamp/project1appempty/app/src/main/res/layout/fragment2.xml" value="0.1" />
+        <entry key="..\:/kaist/madcamp/project1appempty/app/src/main/res/layout/fragment2.xml" value="0.264" />
         <entry key="..\:/kaist/madcamp/project1appempty/app/src/main/res/layout/fragment3.xml" value="0.1" />
       </map>
     </option>
