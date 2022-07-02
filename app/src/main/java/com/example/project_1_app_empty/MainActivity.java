@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         TabLayout tabs = findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("Phone"));
-        tabs.addTab(tabs.newTab().setText("Gallery"));
-        tabs.addTab(tabs.newTab().setText("Tab3"));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.tab1_name)));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.tab2_name)));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.tab3_name)));
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
