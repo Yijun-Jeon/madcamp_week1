@@ -45,6 +45,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
         nameView.setText(profile.getName());
         phoneView.setText(profile.getPhone());
 
+        // 전화 버튼
         ImageView callView = view.findViewById(R.id.call);
         callView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -68,6 +69,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
             }
         });
 
+        // 메시지 버튼
         ImageView messageView = view.findViewById(R.id.message);
         messageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +79,19 @@ public class Custom_dialog extends AppCompatDialogFragment {
                 getContext().startActivity(intent);
             }
         });
+
+        // 영상통화 버튼
+        ImageView videoView = view.findViewById(R.id.video);
+        videoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:"+ profile.getPhone()));
+                intent.putExtra("videocall",true);
+                getContext().startActivity(intent);
+            }
+        });
+
         return builder.create();
     }
 }
