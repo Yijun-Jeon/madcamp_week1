@@ -78,9 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         void onBind(PhoneBook item){
             name.setText(item.getName());
-            phone.setText(item.getPhone().substring(0,3)+"-"
-                    +item.getPhone().substring(3,7)+"-"
-                    +item.getPhone().substring(7));
+            phone.setText(item.getPhone());
         }
     }
 }

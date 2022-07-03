@@ -41,9 +41,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
         phoneView = view.findViewById(R.id.profile_phone);
 
         nameView.setText(profile.getName());
-        phoneView.setText(profile.getPhone().substring(0,3)+"-"
-                        +profile.getPhone().substring(3,7)+"-"
-                        +profile.getPhone().substring(7));
+        phoneView.setText(profile.getPhone());
 
         // 전화 버튼
         ImageView callView = view.findViewById(R.id.call);
