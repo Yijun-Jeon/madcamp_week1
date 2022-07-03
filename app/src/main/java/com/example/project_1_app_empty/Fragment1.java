@@ -2,6 +2,7 @@ package com.example.project_1_app_empty;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.InputStream;
+import java.io.Reader;
 import java.util.ArrayList;
 
 public class Fragment1 extends Fragment {
@@ -64,11 +72,16 @@ public class Fragment1 extends Fragment {
     }
     public void get_json(){
         String json;
-
         mPhonebook.clear();
         
         try{
+            //String FILE_NAME = "test.json";
+
+            /*File file = new File(getActivity().getExternalFilesDir("external"),FILE_NAME);
+            FileInputStream is = new FileInputStream(file);*/
+
             InputStream is = getActivity().getAssets().open("phonebook.json");
+
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -81,6 +94,13 @@ public class Fragment1 extends Fragment {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 mPhonebook.add(new PhoneBook(obj.getString("name"),obj.getString("phone")));
             }
+
+            /*Reader reader = new FileReader(getClass().getClassLoader().getResource("phonebook.json").getPath());
+
+            Gson gson = new Gson();
+            PhoneBook phoneBook = gson.fromJson(reader,PhoneBook.class);*/
+
+            //System.out.println(phoneBook);
 
         }catch (Exception e){
             e.printStackTrace();

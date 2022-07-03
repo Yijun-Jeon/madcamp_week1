@@ -2,13 +2,11 @@ package com.example.project_1_app_empty;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +41,9 @@ public class Custom_dialog extends AppCompatDialogFragment {
         phoneView = view.findViewById(R.id.profile_phone);
 
         nameView.setText(profile.getName());
-        phoneView.setText(profile.getPhone());
+        phoneView.setText(profile.getPhone().substring(0,3)+"-"
+                        +profile.getPhone().substring(3,7)+"-"
+                        +profile.getPhone().substring(7));
 
         // 전화 버튼
         ImageView callView = view.findViewById(R.id.call);
@@ -57,7 +57,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
                           Intent intent = new Intent();
                           intent.setAction(Intent.ACTION_CALL);
                           intent.setData(Uri.parse("tel:"+profile.getPhone()));
-                          getContext().startActivity(intent);
+                          startActivity(intent);
                       }else{
                           Toast t = Toast.makeText(getContext(),"권한이 없습니다!",Toast.LENGTH_SHORT);
                           t.show();
@@ -76,7 +76,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("smsto:"+profile.getPhone()));
-                getContext().startActivity(intent);
+                startActivity(intent);
             }
         });
 
@@ -88,7 +88,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:"+ profile.getPhone()));
                 intent.putExtra("videocall",true);
-                getContext().startActivity(intent);
+                startActivity(intent);
             }
         });
 

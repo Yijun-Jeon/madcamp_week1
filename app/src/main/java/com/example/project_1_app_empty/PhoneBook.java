@@ -15,4 +15,12 @@ public class PhoneBook {
 
     public void setName(String new_name){name = new_name;}
     public void setPhone(String new_phone){phone = new_phone;}
+
+    @Override
+    public String toString() {
+        return "PhoneBook{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
