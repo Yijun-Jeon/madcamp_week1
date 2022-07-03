@@ -58,7 +58,7 @@ public class Fragment1 extends Fragment {
         @Override
         public void onClick(View view) {
             Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getActivity(),PhoneClickActivity.class);
+            Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
             startActivity(intent);
         }
     }

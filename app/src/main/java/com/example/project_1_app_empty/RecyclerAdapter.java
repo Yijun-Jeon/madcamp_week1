@@ -1,25 +1,31 @@
 package com.example.project_1_app_empty;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<PhoneBook> myPhoneBook;
-    private Context context;
+    private FragmentActivity context;
 
     public RecyclerAdapter(ArrayList<PhoneBook> myPhoneBook, FragmentActivity activity){
         this.myPhoneBook = myPhoneBook;
@@ -41,9 +47,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "프로필", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context,PhoneClickActivity.class);
-                context.startActivity(intent);
+                Custom_dialog custom_dialog = new Custom_dialog();
+                custom_dialog.show(context.getSupportFragmentManager(),"Test");
             }
         });
     }
