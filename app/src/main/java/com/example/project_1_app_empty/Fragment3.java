@@ -1,5 +1,6 @@
 package com.example.project_1_app_empty;
 
+import android.app.Notification;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,6 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
+
+import java.util.List;
 
 public class Fragment3 extends Fragment {
 
@@ -34,7 +41,47 @@ public class Fragment3 extends Fragment {
             }
         });
 
+        AndPermission.with(this)
+                .runtime()
+                .permission(
+                        Permission.ACCESS_FINE_LOCATION,
+                        Permission.ACCESS_COARSE_LOCATION)
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        showToast("허용된 권한 갯수 : " + permissions.size());
+                    }
+                })
+                .onDenied(new Notification.Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        showToast("거부된 권한 갯수 : " + permissions.size());
+                    }
+                })
+                .start();
+
         return view;
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+
+    public void startLocationService(Context context) {
+        LocationManager manager =  (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+        try {
+            GPSListener gpsListener = new GPSListener();
+            long minTime = 10000;
+            float minDistance = 0;
+
+            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, gpsListener);
+            Toast.makeText(getActivity().getApplicationContext(), "내 위치 확인 요청함", Toast.LENGTH_SHORT).show();
+
+        } catch(SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
     class GPSListener implements LocationListener {
@@ -54,21 +101,5 @@ public class Fragment3 extends Fragment {
 
         public void onStatusChanged(String provider, int status, Bundle extras) { }
 
-    }
-
-    public void startLocationService(Context context) {
-        LocationManager manager =  (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-
-        try {
-            GPSListener gpsListener = new GPSListener();
-            long minTime = 10000;
-            float minDistance = 0;
-
-            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, gpsListener);
-            Toast.makeText(getActivity().getApplicationContext(), "내 위치 확인 요청함", Toast.LENGTH_SHORT).show();
-
-        } catch(SecurityException e) {
-            e.printStackTrace();
-        }
     }
 }

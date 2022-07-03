@@ -1,16 +1,14 @@
 package com.example.project_1_app_empty;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-import android.view.View;
-
 import com.google.android.material.tabs.TabLayout;
 
-import java.lang.reflect.GenericArrayType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         fragment3 = new Fragment3();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
-
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setText(getString(R.string.tab1_name)));
