@@ -40,9 +40,6 @@ public class AddPhoneActivity extends AppCompatActivity implements View.OnClickL
             }else{
                 Toast t = Toast.makeText(this,"새로운 연락처가 등록되었습니다.",Toast.LENGTH_SHORT);
                 t.show();
-
-                Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
             }
         }
     }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,13 +37,14 @@ public class Fragment1 extends Fragment {
         View view;
         RecyclerView recyclerView;
         RecyclerAdapter recyclerAdapter;
+        CardView cardView;
 
         view = inflater.inflate(R.layout.fragment1, container, false);
         button = view.findViewById(R.id.button_f1);
         button.setOnClickListener(clkListener);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
-        recyclerAdapter = new RecyclerAdapter();
+        recyclerAdapter = new RecyclerAdapter(mPhonebook,getActivity());
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -55,8 +57,8 @@ public class Fragment1 extends Fragment {
     public class ClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            //Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
+            Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getActivity(),PhoneClickActivity.class);
             startActivity(intent);
         }
     }
