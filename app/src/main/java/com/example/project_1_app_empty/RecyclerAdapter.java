@@ -32,7 +32,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         context = activity;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,7 +46,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Custom_dialog custom_dialog = new Custom_dialog();
+                Custom_dialog custom_dialog = new Custom_dialog(myPhoneBook.get(position));
                 custom_dialog.show(context.getSupportFragmentManager(),"Test");
             }
         });

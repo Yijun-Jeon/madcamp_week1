@@ -33,6 +33,7 @@
             android:layout_below="@id/toolbar"
             android:scaleType="center"
             android:src="@drawable/person" />
+
         <LinearLayout
             android:id="@+id/name"
             android:layout_width="match_parent"

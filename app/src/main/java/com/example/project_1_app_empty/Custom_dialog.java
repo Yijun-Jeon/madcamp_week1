@@ -14,6 +14,13 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class Custom_dialog extends AppCompatDialogFragment {
 
+    private PhoneBook profile;
+
+    public Custom_dialog(PhoneBook data){
+        super();
+        profile = data;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -25,7 +32,7 @@ public class Custom_dialog extends AppCompatDialogFragment {
         builder.setView(view);
         builder.setIcon(R.drawable.person);
         builder.setTitle("프로필");
-        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+/*        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -37,12 +44,14 @@ public class Custom_dialog extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
-        });
+        });*/
 
         TextView nameView,phoneView;
         nameView = view.findViewById(R.id.profile_name);
         phoneView = view.findViewById(R.id.profile_phone);
 
+        nameView.setText(profile.getName());
+        phoneView.setText(profile.getPhone());
 
         return builder.create();
     }

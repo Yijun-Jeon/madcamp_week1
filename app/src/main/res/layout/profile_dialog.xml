@@ -5,25 +5,75 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="50dp">
 
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="이름"
-        android:textStyle="bold"
-        android:layout_alignParentLeft="true"
-        android:layout_gravity="center_vertical"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/profile_phone"
+    <RelativeLayout
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="000-0000-0000"
-        android:layout_gravity="center_vertical"
-        android:textSize="16sp"/>
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="이름"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/profile_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/profile_name"
+            android:text="000-0000-0000"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/profile"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:id="@+id/call"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/call"
+            android:layout_alignParentLeft="true"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"/>
+
+        <ImageView
+            android:id="@+id/message"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/message"
+            android:layout_centerInParent="true"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"/>
+
+        <ImageView
+            android:id="@+id/video"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/video"
+            android:layout_alignParentRight="true"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"/>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
