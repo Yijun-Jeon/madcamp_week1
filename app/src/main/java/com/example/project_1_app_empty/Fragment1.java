@@ -47,6 +47,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 public class Fragment1 extends Fragment {
 
     private ArrayList<PhoneBook> mPhonebook;
+    private File JSON;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,52 +56,9 @@ public class Fragment1 extends Fragment {
         RecyclerView recyclerView;
         RecyclerAdapter recyclerAdapter;
         CardView cardView;
+        JSON = new File(getContext().getFilesDir()+"linked_phonebook.json");
 
-        File file = new File(getContext().getFilesDir()+"test.json");
-        if(file.exists()) {
-            try {
-                FileReader fileReader = new FileReader(file);
-                Type type = new TypeToken<ArrayList<PhoneBook>>() {
-                }.getType();
-                Gson gson = new Gson();
-                mPhonebook = gson.fromJson(fileReader, type);
-                fileReader.close();
-
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }else{
-            mPhonebook = new ArrayList<PhoneBook>();
-            String json;
-            try {
-                InputStream is = getActivity().getAssets().open("phonebook.json");
-
-                int size = is.available();
-                byte[] buffer = new byte[size];
-                is.read(buffer);
-                is.close();
-
-                json = new String(buffer, "UTF-8");
-                JSONArray jsonArray = new JSONArray(json);
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    mPhonebook.add(new PhoneBook(obj.getString("name"), obj.getString("phone")));
-                }
-            }catch (Exception e){e.printStackTrace();}
-
-            try {
-                FileWriter fileWriter = new FileWriter(file);
-                Gson gson = new Gson();
-                gson.toJson(mPhonebook,fileWriter);
-                fileWriter.close();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        makeJSON();
 
         view = inflater.inflate(R.layout.fragment1, container, false);
         button = view.findViewById(R.id.button_f1);
@@ -115,6 +73,7 @@ public class Fragment1 extends Fragment {
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             PhoneBook deletedData = null;
+            boolean delete = true;
 
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -154,6 +113,61 @@ public class Fragment1 extends Fragment {
         }).attachToRecyclerView(recyclerView);
 
         return view;
+    }
+    public void makeJSON(){
+        if(JSON.exists())
+            readJSON();
+        else{
+            updateJSON();
+            writeJSON();
+        }
+    }
+    public void readJSON(){
+        try {
+            FileReader fileReader = new FileReader(JSON);
+            Type type = new TypeToken<ArrayList<PhoneBook>>() {
+            }.getType();
+            Gson gson = new Gson();
+            mPhonebook = gson.fromJson(fileReader, type);
+            fileReader.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void updateJSON(){
+        mPhonebook = new ArrayList<PhoneBook>();
+        String json;
+        try {
+            InputStream is = getActivity().getAssets().open("phonebook.json");
+
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+            JSONArray jsonArray = new JSONArray(json);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+                mPhonebook.add(new PhoneBook(obj.getString("name"), obj.getString("phone")));
+            }
+        }catch (Exception e){e.printStackTrace();}
+    }
+    public void writeJSON(){
+        try {
+            FileWriter fileWriter = new FileWriter(JSON);
+            Gson gson = new Gson();
+            gson.toJson(mPhonebook,fileWriter);
+            fileWriter.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        readJSON();
     }
 
     public class ClickListener implements View.OnClickListener {

@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selected = null;
 
                 if(position == 0){
+                    fragment1.writeJSON();
                     selected = fragment1;
                 } else if (position == 1) {
                     selected = fragment2;

@@ -51,7 +51,7 @@ public class AddPhoneActivity extends AppCompatActivity implements View.OnClickL
                 t.show();
             } else {
                 phoneBooks.add(new PhoneBook(name,phone));
-                File file = new File(getFilesDir()+"test.json");
+                File file = new File(getFilesDir()+"linked_phonebook.json");
                 try {
                     FileWriter fileWriter = new FileWriter(file);
                     Gson gson = new Gson();
