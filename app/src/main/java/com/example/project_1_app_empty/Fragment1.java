@@ -49,7 +49,6 @@ public class Fragment1 extends Fragment {
         CardView cardView;
 
         File file = new File(getContext().getFilesDir()+"test.json");
-        file.delete();
         if(file.exists()) {
             try {
                 FileReader fileReader = new FileReader(file);
@@ -97,7 +96,7 @@ public class Fragment1 extends Fragment {
 
         view = inflater.inflate(R.layout.fragment1, container, false);
         button = view.findViewById(R.id.button_f1);
-        button.setOnClickListener(new ClickListener(this));
+        button.setOnClickListener(new ClickListener());
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         recyclerAdapter = new RecyclerAdapter(mPhonebook,getActivity());
@@ -108,30 +107,12 @@ public class Fragment1 extends Fragment {
         return view;
     }
 
-/*    public void writeData(PhoneBook data){
-        mPhonebook.add(data);
-        File file = new File(getContext().getFilesDir()+"test.json");
-        try {
-            FileWriter fileWriter = new FileWriter(file);
-            Gson gson = new Gson();
-            gson.toJson(mPhonebook,fileWriter);
-            fileWriter.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
     public class ClickListener implements View.OnClickListener {
-        private Fragment1 fragment1;
-        public ClickListener(Fragment1 fragment1){
-            this.fragment1 = fragment1;
-        }
         @Override
         public void onClick(View view) {
             Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
-            //intent.putExtra("data", (Parcelable) fragment1);
+            intent.putExtra("data", mPhonebook);
             startActivity(intent);
         }
     }

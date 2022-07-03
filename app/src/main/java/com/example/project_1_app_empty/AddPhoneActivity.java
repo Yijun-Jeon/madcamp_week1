@@ -10,6 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -19,7 +24,7 @@ public class AddPhoneActivity extends AppCompatActivity implements View.OnClickL
     private EditText nameView;
     private EditText phoneView;
     private Button addBtn;
-    private Fragment1 fragment1;
+    private ArrayList<PhoneBook> phoneBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,7 @@ public class AddPhoneActivity extends AppCompatActivity implements View.OnClickL
 
         addBtn.setOnClickListener(this);
 
-        //fragment1 = (Fragment1) getIntent().getParcelableExtra("data");
+        phoneBooks = (ArrayList<PhoneBook>) getIntent().getSerializableExtra("data");
     }
 
     @Override
@@ -45,7 +50,17 @@ public class AddPhoneActivity extends AppCompatActivity implements View.OnClickL
                 Toast t = Toast.makeText(this, "이름이 입력되지 않았습니다. ", Toast.LENGTH_SHORT);
                 t.show();
             } else {
-                //fragment1.writeData(new PhoneBook(name,phone));
+                phoneBooks.add(new PhoneBook(name,phone));
+                File file = new File(getFilesDir()+"test.json");
+                try {
+                    FileWriter fileWriter = new FileWriter(file);
+                    Gson gson = new Gson();
+                    gson.toJson(phoneBooks,fileWriter);
+                    fileWriter.close();
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 Intent i = new Intent(this, MainActivity.class);
                 Toast t = Toast.makeText(this,"새로운 연락처가 등록되었습니다.",Toast.LENGTH_SHORT);
                 t.show();
