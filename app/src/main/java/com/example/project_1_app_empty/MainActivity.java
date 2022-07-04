@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Fragment3 fragment3;
 
     PermissionApp permission;
+
+    private final long finishtimeed = 1000;
+    private long presstime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,22 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode==10 && grantResults.length > 0){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 permission.callPermission = true;
+        }
+    }
+
+    // 뒤로가기 클릭 처리
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - presstime;
+
+        if (0 <= intervalTime && finishtimeed >= intervalTime){
+            fragment1.writeJSON();
+            finish();
+        }
+        else{
+            presstime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
         }
     }
 }

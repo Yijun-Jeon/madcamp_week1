@@ -41,6 +41,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -129,6 +130,7 @@ public class Fragment1 extends Fragment {
             }.getType();
             Gson gson = new Gson();
             mPhonebook = gson.fromJson(fileReader, type);
+            Collections.sort(mPhonebook);
             fileReader.close();
 
         } catch (FileNotFoundException e) {
@@ -173,10 +175,11 @@ public class Fragment1 extends Fragment {
     public class ClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "새 연락처를 생성합니다", Toast.LENGTH_LONG).show();
+            writeJSON();
             Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
             intent.putExtra("data", mPhonebook);
             startActivity(intent);
+            getActivity().finish();
         }
     }
 }

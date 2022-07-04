@@ -2,7 +2,7 @@ package com.example.project_1_app_empty;
 
 import java.io.Serializable;
 
-public class PhoneBook implements Serializable {
+public class PhoneBook implements Serializable,Comparable<PhoneBook> {
 
     private String name;
     private String phone;
@@ -24,4 +24,13 @@ public class PhoneBook implements Serializable {
 
     public void setName(String new_name){name = new_name;}
     public void setPhone(String new_phone){phone = new_phone;}
+
+    @Override
+    public int compareTo(PhoneBook phoneBook) {
+        if(name.compareTo(phoneBook.getName()) < 0)
+            return -1;
+        else if(name.compareTo(phoneBook.getName()) > 0)
+            return 1;
+        return 0;
+    }
 }

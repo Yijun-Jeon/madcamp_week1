@@ -64,8 +64,17 @@ public class AddPhoneActivity extends AppCompatActivity implements View.OnClickL
                 Intent i = new Intent(this, MainActivity.class);
                 Toast t = Toast.makeText(this,"새로운 연락처가 등록되었습니다.",Toast.LENGTH_SHORT);
                 t.show();
+                finish();
                 startActivity(i);
             }
         }
+    }
+
+    // 뒤로가기 클릭 처리
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,MainActivity.class);
+        finish();
+        startActivity(intent);
     }
 }
