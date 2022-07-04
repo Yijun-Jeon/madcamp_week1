@@ -5,15 +5,24 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -22,7 +31,9 @@ import java.util.List;
 
 public class Fragment3 extends Fragment {
 
-    TextView textView;
+    SupportMapFragment mapFragment;
+    GoogleMap map;
+    MarkerOptions myLocationMarker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,13 +41,29 @@ public class Fragment3 extends Fragment {
         Button button;
 
         view = inflater.inflate(R.layout.fragment3, container, false);
+//        mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+//        mapFragment = (MapFragment) this.getChildFragmentManager.findFragmentById(R.id.map);
 
-        textView = view.findViewById(R.id.textView);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                Log.d("Map", "지도 준비됨");
+                map = googleMap;
+            }
+        });
+
+        try {
+            MapsInitializer.initialize(getActivity());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         button = view.findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startLocationService(view.getContext());
+                startLocationService(getContext());
             }
         });
 
@@ -44,7 +71,8 @@ public class Fragment3 extends Fragment {
                 .runtime()
                 .permission(
                         Permission.ACCESS_FINE_LOCATION,
-                        Permission.ACCESS_COARSE_LOCATION)
+                        Permission.ACCESS_COARSE_LOCATION
+                )
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
@@ -71,6 +99,14 @@ public class Fragment3 extends Fragment {
         LocationManager manager =  (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
         try {
+            Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if(location != null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                String message = "최근 위치 -> Latitude : " + latitude + "\nLongitude:" + longitude;
+                Log.d("Map", message);
+            }
+
             GPSListener gpsListener = new GPSListener();
             long minTime = 10000;
             float minDistance = 0;
@@ -89,9 +125,9 @@ public class Fragment3 extends Fragment {
             Double longitude = location.getLongitude();
 
             String message = "최근 위치->Latitude: " + latitude + "\nLongitude:" + longitude;
+            Log.d("Map", message);
 
-            textView.setText(message);
-
+            showCurrentLocation(latitude, longitude);
         }
 
         public void onProviderDisabled(String provider) { }
@@ -99,6 +135,25 @@ public class Fragment3 extends Fragment {
         public void onProviderEnabled(String provider) { }
 
         public void onStatusChanged(String provider, int status, Bundle extras) { }
+    }
 
+    private void showCurrentLocation(Double latitude, Double longitude) {
+        LatLng curPoint = new LatLng(latitude, longitude);
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
+
+        showMyLocationMarker(curPoint);
+    }
+
+    private void showMyLocationMarker(LatLng curPoint) {
+
+        if(myLocationMarker == null) {
+            myLocationMarker = new MarkerOptions();
+            myLocationMarker.position(curPoint);
+            myLocationMarker.title("내 위치\n");
+            myLocationMarker.snippet("GPS로 확인한 위치");
+            myLocationMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mylocation));
+        } else {
+            myLocationMarker.position(curPoint);
+        }
     }
 }
