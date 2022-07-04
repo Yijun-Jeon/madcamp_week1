@@ -13,14 +13,7 @@ public class PhoneBook implements Serializable,Comparable<PhoneBook> {
     }
 
     public String getName() {return name;}
-    public String getPhone(){
-        if(phone.length() < 9)
-            return phone;
-        else
-            return phone.substring(0,3)+"-"+
-                    phone.substring(3,7)+"-"+
-                    phone.substring(7);
-    }
+    public String getPhone(){return phone;}
 
     public void setName(String new_name){name = new_name;}
     public void setPhone(String new_phone){phone = new_phone;}
