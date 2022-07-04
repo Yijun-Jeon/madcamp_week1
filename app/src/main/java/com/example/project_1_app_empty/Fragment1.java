@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,18 +54,17 @@ public class Fragment1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Button button;
+        Button button_add;
         View view;
         RecyclerView recyclerView;
         RecyclerAdapter recyclerAdapter;
-        CardView cardView;
         JSON = new File(getContext().getFilesDir()+"linked_phonebook.json");
 
         makeJSON();
 
         view = inflater.inflate(R.layout.fragment1, container, false);
-        button = view.findViewById(R.id.button_f1);
-        button.setOnClickListener(new ClickListener());
+        button_add = view.findViewById(R.id.button_f1);
+        button_add.setOnClickListener(new ClickListener());
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         recyclerAdapter = new RecyclerAdapter(mPhonebook,getActivity());
@@ -72,7 +73,7 @@ public class Fragment1 extends Fragment {
 
         recyclerAdapter.setMyPhoneBook(mPhonebook);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             PhoneBook deletedData = null;
             boolean delete = true;
 
@@ -99,6 +100,14 @@ public class Fragment1 extends Fragment {
                                     }
                                 }).show();
                         break;
+                    case ItemTouchHelper.RIGHT:
+                        writeJSON();
+                        Intent intent_edit = new Intent(getActivity(),EditPhoneActivity.class);
+                        intent_edit.putExtra("data", mPhonebook);
+                        intent_edit.putExtra("position",position);
+                        startActivity(intent_edit);
+                        getActivity().finish();
+                        break;
                 }
             }
 
@@ -107,6 +116,8 @@ public class Fragment1 extends Fragment {
                 new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                         .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(),R.color.colorAccent))
                         .addSwipeLeftActionIcon(R.drawable.delete)
+                        .addSwipeRightActionIcon(R.drawable.edit)
+                        .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(),R.color.recycler_view_item_swipe_left_background))
                         .create()
                         .decorate();
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
@@ -175,11 +186,11 @@ public class Fragment1 extends Fragment {
     public class ClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            writeJSON();
-            Intent intent = new Intent(getActivity(),AddPhoneActivity.class);
-            intent.putExtra("data", mPhonebook);
-            startActivity(intent);
-            getActivity().finish();
+                writeJSON();
+                Intent intent_new = new Intent(getActivity(),AddPhoneActivity.class);
+                intent_new.putExtra("data", mPhonebook);
+                startActivity(intent_new);
+                getActivity().finish();
+            }
         }
     }
-}
