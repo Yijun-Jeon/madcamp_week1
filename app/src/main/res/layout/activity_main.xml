@@ -17,7 +17,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?colorPrimaryDark"
+                android:background="@color/toolbar"
                 android:elevation="1dp"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -25,7 +25,7 @@
                     android:id="@+id/titleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Demo"
+                    android:text="CAMP"
                     android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title"
                     />
 
