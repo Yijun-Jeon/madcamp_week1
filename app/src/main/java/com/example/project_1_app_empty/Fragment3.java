@@ -140,7 +140,7 @@ public class Fragment3 extends Fragment {
     private void showCurrentLocation(Double latitude, Double longitude) {
         LatLng curPoint = new LatLng(latitude, longitude);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
-
+        Log.d("Map", "showCurrentLocation");
         showMyLocationMarker(curPoint);
     }
 
@@ -152,7 +152,9 @@ public class Fragment3 extends Fragment {
             myLocationMarker.title("내 위치\n");
             myLocationMarker.snippet("GPS로 확인한 위치");
             myLocationMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mylocation));
+            map.addMarker(myLocationMarker);
         } else {
+            Log.d("Map", "showMarker");
             myLocationMarker.position(curPoint);
         }
     }
