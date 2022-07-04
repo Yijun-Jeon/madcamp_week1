@@ -1,6 +1,5 @@
 package com.example.project_1_app_empty;
 
-import android.app.Notification;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.runtime.Permission;
+import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
 
@@ -33,15 +32,15 @@ public class Fragment3 extends Fragment {
         view = inflater.inflate(R.layout.fragment3, container, false);
 
         textView = view.findViewById(R.id.textView);
-        button = view.findViewById(R.id.button);
+        button = view.findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startLocationService(getActivity().getApplicationContext());
+                startLocationService(view.getContext());
             }
         });
 
-        AndPermission.with(this)
+        AndPermission.with(getContext())
                 .runtime()
                 .permission(
                         Permission.ACCESS_FINE_LOCATION,
@@ -52,7 +51,7 @@ public class Fragment3 extends Fragment {
                         showToast("허용된 권한 갯수 : " + permissions.size());
                     }
                 })
-                .onDenied(new Notification.Action<List<String>>() {
+                .onDenied(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
                         showToast("거부된 권한 갯수 : " + permissions.size());
@@ -64,7 +63,7 @@ public class Fragment3 extends Fragment {
     }
 
     public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
 
@@ -77,7 +76,7 @@ public class Fragment3 extends Fragment {
             float minDistance = 0;
 
             manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, gpsListener);
-            Toast.makeText(getActivity().getApplicationContext(), "내 위치 확인 요청함", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "내 위치 확인 요청함", Toast.LENGTH_SHORT).show();
 
         } catch(SecurityException e) {
             e.printStackTrace();
