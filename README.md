@@ -27,9 +27,9 @@ display your current location as marker when you click button "Get Map Info"
 
 # Previews
 ## Phone
-![Screenshot_20220705-114601_CAMP](https://user-images.githubusercontent.com/88418985/177241112-b04aa553-0bbb-4e1b-91e8-49478539c05b.jpg){: width="50px" height="50px"}
-![Screenshot_20220705-114614_CAMP](https://user-images.githubusercontent.com/88418985/177241130-5f76326e-eedc-4326-8770-6f7976092b4a.jpg){: width="50px" height="50px"}
-![Screenshot_20220705-114627_CAMP](https://user-images.githubusercontent.com/88418985/177241141-d3b5ff76-e99f-4b80-bbfb-134830f851fa.jpg){: width="50px" height="50px"}
+![Screenshot_20220705-114601_CAMP](https://user-images.githubusercontent.com/88418985/177241112-b04aa553-0bbb-4e1b-91e8-49478539c05b.jpg){: width="30px" height="30px"}
+![Screenshot_20220705-114614_CAMP](https://user-images.githubusercontent.com/88418985/177241130-5f76326e-eedc-4326-8770-6f7976092b4a.jpg){: width="30px" height="30px"}
+![Screenshot_20220705-114627_CAMP](https://user-images.githubusercontent.com/88418985/177241141-d3b5ff76-e99f-4b80-bbfb-134830f851fa.jpg){: width="30px" height="30px"}
 ![Screenshot_20220705-114636_CAMP](https://user-images.githubusercontent.com/88418985/177241145-8ace2491-f993-45d3-8bee-0109c84bec68.jpg){: width="50px" height="50px"}
 
 ## Gallery
