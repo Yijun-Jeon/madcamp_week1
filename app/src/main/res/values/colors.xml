@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorAccent">#D50E74</color>
     <color name="toolbar">#B4C3FF</color>
+    <color name="background">#9EEAFF</color>
     <color name="recycler_view_item_swipe_left_background">#00BB00</color>
 </resources>
