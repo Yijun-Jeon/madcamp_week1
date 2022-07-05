@@ -31,7 +31,7 @@ We implement address in usual android app
 * can see the image full screened when click that
 
 ## Map
-* show current location with GPS by **Google Map API  **
+* show current location with GPS by **Google Map API**
 * display your current location as **marker** when you click button "Get Map Info"  
 
 # Previews
