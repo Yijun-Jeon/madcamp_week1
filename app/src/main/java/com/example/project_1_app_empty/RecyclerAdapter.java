@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,15 +26,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Locale;
 import java.util.Objects;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
 
     private ArrayList<PhoneBook> myPhoneBook;
+    private ArrayList<PhoneBook> myPhoneBookAll;
     private FragmentActivity context;
 
     public RecyclerAdapter(ArrayList<PhoneBook> myPhoneBook, FragmentActivity activity){
         this.myPhoneBook = myPhoneBook;
+        this.myPhoneBookAll = new ArrayList<>(myPhoneBook);
         context = activity;
     }
 
@@ -65,6 +71,39 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         myPhoneBook = list;
         notifyDataSetChanged();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        //run on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<PhoneBook> filteredList = new ArrayList<>();
+            if (charSequence.toString().isEmpty())
+                filteredList.addAll(myPhoneBookAll);
+            else{
+                for(PhoneBook data: myPhoneBookAll){
+                    if(data.getName().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                        filteredList.add(data);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+        //run on a ui thread
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            myPhoneBook.clear();
+            myPhoneBook.addAll((Collection<? extends PhoneBook>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;

@@ -1,5 +1,6 @@
 package com.example.project_1_app_empty;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -7,14 +8,19 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -23,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
@@ -49,15 +56,21 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 public class Fragment1 extends Fragment {
 
+    private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
     private ArrayList<PhoneBook> mPhonebook;
     private File JSON;
+    private Button button_add;
+    private TabLayout tabs;
+
+    public Fragment1(TabLayout tabs){
+        super();
+        this.tabs = tabs;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Button button_add;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {;
         View view;
-        RecyclerView recyclerView;
-        RecyclerAdapter recyclerAdapter;
         JSON = new File(getContext().getFilesDir()+"linked_phonebook.json");
 
         makeJSON();
@@ -126,6 +139,13 @@ public class Fragment1 extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     public void makeJSON(){
         if(JSON.exists())
             readJSON();
@@ -191,6 +211,34 @@ public class Fragment1 extends Fragment {
                 intent_new.putExtra("data", mPhonebook);
                 startActivity(intent_new);
                 getActivity().finish();
-            }
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment1_menu,menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                button_add.setClickable(false);
+                tabs.select
+                return false;
+            }
+        });
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                recyclerAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+}
