@@ -1,5 +1,5 @@
 # Madcamp App
-2022년 여름 몰입캠프 1주차 공통과제 프로젝트
+**2022년 여름 몰입캠프 1주차 공통과제 프로젝트**
 
 # Contributors
 Yijun Jeon
@@ -17,22 +17,22 @@ TaeChan An
 implment 3 functionality by each tab
 
 ## Phone
-implement address in usual android app
-implement CRUD functionality
-create new address with create button
-udpate address by swipping it to left
-delete address by swipping it to right  
+We implement address in usual android app
 
-add call functionality
+* implement 3 functionality in CRUD
+  * **create** new address with create button
+  * **udpate** address by swipping it to left
+  * **delete** by swipping to right address by swipping it to right  
+* add call functionality
 
 
 ## Gallery
-show sample images already embedded in our project  
-can see the image full screened when click that
+* show sample images already embedded in our project  
+* can see the image full screened when click that
 
 ## Map
-show current location with GPS by Google Map API  
-display your current location as marker when you click button "Get Map Info"  
+* show current location with GPS by **Google Map API  **
+* display your current location as **marker** when you click button "Get Map Info"  
 
 # Previews
 ## Phone
