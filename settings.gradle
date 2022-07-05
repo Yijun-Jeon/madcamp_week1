@@ -13,8 +13,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // 추가
-        maven{url 'https://jitpack.io'}
+        maven { url 'https://jitpack.io'} 
     }
 }
 rootProject.name = "project-1-app-empty"

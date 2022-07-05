@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardBackgroundColor="@color/cardview_shadow_end_color"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="@dimen/appbar_padding_top">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="이름"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="000-0000-0000"
+                android:layout_gravity="center_vertical"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
