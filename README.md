@@ -14,8 +14,17 @@ TaeChan An
 
 
 # About
-We implment 3 functionality by each tab
+implment 3 functionality by each tab
+
 ## Phone
+implement address in usual android app
+implement CRUD functionality
+create new address with create button
+udpate address by swipping it to left
+delete address by swipping it to right  
+
+add call functionality
+
 
 ## Gallery
 show sample images already embedded in our project  
