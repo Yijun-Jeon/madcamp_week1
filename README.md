@@ -35,20 +35,11 @@ We implement address in usual android app
 * display your current location as **marker** when you click button "Get Map Info"  
 
 # Previews
-## Phone
-![Screenshot_20220705-114601_CAMP](https://user-images.githubusercontent.com/88418985/177241112-b04aa553-0bbb-4e1b-91e8-49478539c05b.jpg)
-![Screenshot_20220705-114614_CAMP](https://user-images.githubusercontent.com/88418985/177241130-5f76326e-eedc-4326-8770-6f7976092b4a.jpg)
-![Screenshot_20220705-114627_CAMP](https://user-images.githubusercontent.com/88418985/177241141-d3b5ff76-e99f-4b80-bbfb-134830f851fa.jpg)
-![Screenshot_20220705-114636_CAMP](https://user-images.githubusercontent.com/88418985/177241145-8ace2491-f993-45d3-8bee-0109c84bec68.jpg)
-
-## Gallery
-![Screenshot_20220705-114648_CAMP](https://user-images.githubusercontent.com/88418985/177241155-5a56d1a6-fe77-4708-b360-a78f15a8977f.jpg)
-![Screenshot_20220705-114652_CAMP](https://user-images.githubusercontent.com/88418985/177241161-fa637f1a-4bc0-43b5-8c2e-d080c6324fcf.jpg)
-
-## Map
-![Screenshot_20220705-114714_CAMP](https://user-images.githubusercontent.com/88418985/177241170-fe073996-8dcc-4939-b157-9eb6bfc7a583.jpg)
-![Screenshot_20220705-114859_CAMP](https://user-images.githubusercontent.com/88418985/177241171-6a5fa364-e95f-4169-b831-424ef7aa8fe1.jpg)
-![Screenshot_20220705-114909_CAMP](https://user-images.githubusercontent.com/88418985/177241175-b09f4711-5a7d-4e09-9eb6-1b261afff2cd.jpg)
+![그림2](https://user-images.githubusercontent.com/88418985/177314660-863dc248-4fdc-4fb0-83bb-9dd5594ff10e.png)
+-----------------------------
+![그림1](https://user-images.githubusercontent.com/88418985/177314654-97a213b3-da22-4578-b7f8-de66dac51f09.png)
+----------------------------- 
+![그림3](https://user-images.githubusercontent.com/88418985/177314666-39925692-64a0-42b8-9e7a-6e92b9330506.png)  
 
 # Tech
 * OS: Android 11(minSdk: 21, targetSdk: 32)  
@@ -59,4 +50,5 @@ We implement address in usual android app
 # License
 https://github.com/yanzhenjie/AndPermission  
 Google API
+
 
