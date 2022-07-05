@@ -50,6 +50,12 @@ We implement address in usual android app
 ![Screenshot_20220705-114859_CAMP](https://user-images.githubusercontent.com/88418985/177241171-6a5fa364-e95f-4169-b831-424ef7aa8fe1.jpg)
 ![Screenshot_20220705-114909_CAMP](https://user-images.githubusercontent.com/88418985/177241175-b09f4711-5a7d-4e09-9eb6-1b261afff2cd.jpg)
 
+# Tech
+* OS: Android 11(minSdk: 21, targetSdk: 32)  
+* Language: Java  
+* IDE: Android Studio  
+* Target Device: Galaxy S10
+
 # License
 https://github.com/yanzhenjie/AndPermission  
 Google API
