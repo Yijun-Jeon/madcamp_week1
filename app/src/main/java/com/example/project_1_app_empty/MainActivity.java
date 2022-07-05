@@ -1,6 +1,8 @@
 package com.example.project_1_app_empty;
 
+
 import androidx.annotation.NonNull;
+import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,16 +10,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.material.tabs.TabLayout;
 
-import java.lang.reflect.GenericArrayType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
         TabLayout tabs = findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("Phone"));
-        tabs.addTab(tabs.newTab().setText("Gallery"));
-        tabs.addTab(tabs.newTab().setText("Tab3"));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.tab1_name)));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.tab2_name)));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.tab3_name)));
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -112,4 +113,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
