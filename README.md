@@ -19,7 +19,7 @@ implment 3 functionality by each tab
 ## Phone
 We implement address in usual android app
 
-* implement 3 functionality in CRUD
+* implement 3 functionality in **CRUD**
   * **create** new address with create button
   * **udpate** address by swipping it to left
   * **delete** by swipping to right address by swipping it to right  
