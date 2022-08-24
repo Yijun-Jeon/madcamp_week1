@@ -1,4 +1,4 @@
-# Madcamp App
+# Camp
 **2022년 여름 몰입캠프 1주차 공통과제 프로젝트**
 
 # Contributors
