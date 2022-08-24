@@ -1,16 +1,21 @@
-# Camp
-**2022년 여름 몰입캠프 1주차 공통과제 프로젝트**
+# <img src="https://user-images.githubusercontent.com/68576681/177258571-64e4855d-bdca-4335-b221-e23d54708cbe.jpg" width="30" height="30"> Camp
+> 2분반 1주차(2022.06.29~07.05) By 안태찬, 전이준
 
-# Contributors
-Yijun Jeon
-[jeonyijun][jeonyijun link]
+# Table Of Contents
+* [Developer Information](#developer-information)
+* [About](#about)
+  * [1. Phone](#phone)
+  * [2. Gallery](#gallery)
+  * [3. Map](#map)
+* [Previews](#previews)
+* [Tech](#tech)
+* [License](#license)
+***
 
-[jeonyijun link]: https://github.com/Yijun-Jeon
-
-TaeChan An
-[antaechan][antaechan link]
-
-[antaechan link]: https://github.com/antaechan
+# Developer Information
+* [안태찬](https://github.com/antaechan) (KAIST 전산학부) 
+* [전이준](https://github.com/Yijun-Jeon) (성균관대학교 글로벌경영학과) 
+***
 
 
 # About
@@ -43,7 +48,7 @@ We implement address in usual android app
 
 # Tech
 * OS: Android 11(minSdk: 21, targetSdk: 32)  
-* Language: Java  
+* Language: Java
 * IDE: Android Studio  
 * Target Device: Galaxy S10
 
